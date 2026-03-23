@@ -1,26 +1,152 @@
 <!DOCTYPE html>
-<html lang="en" data-beasties-container>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Ionic App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, sans-serif; background: #1c1c1e; color: #fff; display: flex; height: 100vh; }
 
-  <base href="/myweb/">
+    .sidebar {
+      width: 300px; min-width: 300px;
+      background: #1c1c1e;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex; flex-direction: column;
+    }
 
-  <meta name="color-scheme" content="light dark">
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
+    .sidebar-header {
+      padding: 20px 16px 8px;
+    }
 
-  <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+    .sidebar-header h2 { font-size: 20px; font-weight: 700; color: #fff; }
+    .sidebar-header p { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 2px; }
 
-  <!-- add to homescreen for ios -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<style>:root{--ion-color-primary:#0054e9;--ion-color-primary-rgb:0, 84, 233;--ion-color-primary-contrast:#fff;--ion-color-primary-contrast-rgb:255, 255, 255;--ion-color-primary-shade:#004acd;--ion-color-primary-tint:#1a65eb;--ion-color-secondary:#0163aa;--ion-color-secondary-rgb:1, 99, 170;--ion-color-secondary-contrast:#fff;--ion-color-secondary-contrast-rgb:255, 255, 255;--ion-color-secondary-shade:#015796;--ion-color-secondary-tint:#1a73b3;--ion-color-tertiary:#6030ff;--ion-color-tertiary-rgb:96, 48, 255;--ion-color-tertiary-contrast:#fff;--ion-color-tertiary-contrast-rgb:255, 255, 255;--ion-color-tertiary-shade:#542ae0;--ion-color-tertiary-tint:#7045ff;--ion-color-success:#2dd55b;--ion-color-success-rgb:45, 213, 91;--ion-color-success-contrast:#000;--ion-color-success-contrast-rgb:0, 0, 0;--ion-color-success-shade:#28bb50;--ion-color-success-tint:#42d96b;--ion-color-warning:#ffc409;--ion-color-warning-rgb:255, 196, 9;--ion-color-warning-contrast:#000;--ion-color-warning-contrast-rgb:0, 0, 0;--ion-color-warning-shade:#e0ac08;--ion-color-warning-tint:#ffca22;--ion-color-danger:#c5000f;--ion-color-danger-rgb:197, 0, 15;--ion-color-danger-contrast:#fff;--ion-color-danger-contrast-rgb:255, 255, 255;--ion-color-danger-shade:#ad000d;--ion-color-danger-tint:#cb1a27;--ion-color-light:#f4f5f8;--ion-color-light-rgb:244, 245, 248;--ion-color-light-contrast:#000;--ion-color-light-contrast-rgb:0, 0, 0;--ion-color-light-shade:#d7d8da;--ion-color-light-tint:#f5f6f9;--ion-color-medium:#636469;--ion-color-medium-rgb:99, 100, 105;--ion-color-medium-contrast:#fff;--ion-color-medium-contrast-rgb:255, 255, 255;--ion-color-medium-shade:#57585c;--ion-color-medium-tint:#737478;--ion-color-dark:#222428;--ion-color-dark-rgb:34, 36, 40;--ion-color-dark-contrast:#fff;--ion-color-dark-contrast-rgb:255, 255, 255;--ion-color-dark-shade:#1e2023;--ion-color-dark-tint:#383a3e}html{--ion-dynamic-font:-apple-system-body;--ion-font-family:var(--ion-default-font)}body{background:var(--ion-background-color);color:var(--ion-text-color)}@supports (padding-top: 20px){html{--ion-safe-area-top:var(--ion-statusbar-padding)}}@supports (padding-top: env(safe-area-inset-top)){html{--ion-safe-area-top:var(--safe-area-inset-top, env(safe-area-inset-top));--ion-safe-area-bottom:var(--safe-area-inset-bottom, env(safe-area-inset-bottom));--ion-safe-area-left:var(--safe-area-inset-left, env(safe-area-inset-left));--ion-safe-area-right:var(--safe-area-inset-right, env(safe-area-inset-right))}}*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}html{width:100%;height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;margin:0;padding:0;position:fixed;width:100%;max-width:100%;height:100%;max-height:100%;transform:translateZ(0);text-rendering:optimizeLegibility;overflow:hidden;touch-action:manipulation;-webkit-user-drag:none;-ms-content-zooming:none;word-wrap:break-word;overscroll-behavior-y:none;-webkit-text-size-adjust:none;text-size-adjust:none}html{font-family:var(--ion-font-family)}@supports (-webkit-touch-callout: none){html{font:var(--ion-dynamic-font, 16px var(--ion-font-family))}}@media (prefers-color-scheme: dark){:root{--ion-color-primary:#4d8dff;--ion-color-primary-rgb:77, 141, 255;--ion-color-primary-contrast:#000;--ion-color-primary-contrast-rgb:0, 0, 0;--ion-color-primary-shade:#447ce0;--ion-color-primary-tint:#5f98ff;--ion-color-secondary:#46b1ff;--ion-color-secondary-rgb:70, 177, 255;--ion-color-secondary-contrast:#000;--ion-color-secondary-contrast-rgb:0, 0, 0;--ion-color-secondary-shade:#3e9ce0;--ion-color-secondary-tint:#59b9ff;--ion-color-tertiary:#8482fb;--ion-color-tertiary-rgb:132, 130, 251;--ion-color-tertiary-contrast:#000;--ion-color-tertiary-contrast-rgb:0, 0, 0;--ion-color-tertiary-shade:#7472dd;--ion-color-tertiary-tint:#908ffb;--ion-color-success:#2dd55b;--ion-color-success-rgb:45, 213, 91;--ion-color-success-contrast:#000;--ion-color-success-contrast-rgb:0, 0, 0;--ion-color-success-shade:#28bb50;--ion-color-success-tint:#42d96b;--ion-color-warning:#ffce31;--ion-color-warning-rgb:255, 206, 49;--ion-color-warning-contrast:#000;--ion-color-warning-contrast-rgb:0, 0, 0;--ion-color-warning-shade:#e0b52b;--ion-color-warning-tint:#ffd346;--ion-color-danger:#f24c58;--ion-color-danger-rgb:242, 76, 88;--ion-color-danger-contrast:#000;--ion-color-danger-contrast-rgb:0, 0, 0;--ion-color-danger-shade:#d5434d;--ion-color-danger-tint:#f35e69;--ion-color-light:#222428;--ion-color-light-rgb:34, 36, 40;--ion-color-light-contrast:#fff;--ion-color-light-contrast-rgb:255, 255, 255;--ion-color-light-shade:#1e2023;--ion-color-light-tint:#383a3e;--ion-color-medium:#989aa2;--ion-color-medium-rgb:152, 154, 162;--ion-color-medium-contrast:#000;--ion-color-medium-contrast-rgb:0, 0, 0;--ion-color-medium-shade:#86888f;--ion-color-medium-tint:#a2a4ab;--ion-color-dark:#f4f5f8;--ion-color-dark-rgb:244, 245, 248;--ion-color-dark-contrast:#000;--ion-color-dark-contrast-rgb:0, 0, 0;--ion-color-dark-shade:#d7d8da;--ion-color-dark-tint:#f5f6f9}}</style><link rel="stylesheet" href="styles-6KTEQGYX.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-6KTEQGYX.css"></noscript></head>
+    .menu-list { list-style: none; padding: 8px 0; }
 
+    .menu-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 16px; cursor: pointer;
+      color: rgba(255,255,255,0.6); font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .menu-item:hover { background: rgba(255,255,255,0.05); }
+    .menu-item.active { color: #4d8dff; background: rgba(77,141,255,0.08); }
+
+    .menu-item ion-icon, .menu-item .icon {
+      font-size: 20px; width: 24px; text-align: center;
+    }
+
+    .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 8px 0; }
+
+    .label-header {
+      padding: 8px 16px 4px;
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .content {
+      flex: 1;
+      display: flex; flex-direction: column;
+    }
+
+    .content-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 16px; font-weight: 600;
+    }
+
+    .content-body {
+      flex: 1; display: flex;
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; color: rgba(255,255,255,0.5);
+    }
+
+    .content-body h3 { font-size: 20px; font-weight: 600; color: #fff; }
+    .content-body a { color: #4d8dff; text-decoration: none; font-size: 14px; }
+
+    .cat-img {
+      width: 300px; border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
 <body>
-  <app-root></app-root>
-<link rel="modulepreload" href="chunk-CPEBURVX.js"><link rel="modulepreload" href="chunk-TVNCLVPZ.js"><link rel="modulepreload" href="chunk-LSHKZWZW.js"><link rel="modulepreload" href="chunk-PNUKUDNT.js"><link rel="modulepreload" href="chunk-F73J3XBP.js"><link rel="modulepreload" href="chunk-YASFHDXT.js"><link rel="modulepreload" href="chunk-YUNOCBLG.js"><link rel="modulepreload" href="chunk-YJ5TA4PT.js"><link rel="modulepreload" href="chunk-2NIBOUWM.js"><link rel="modulepreload" href="chunk-I547WOKC.js"><script src="polyfills-TDCRLYKL.js" type="module"></script><script src="main-I2MI7W33.js" type="module"></script></body>
 
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>Inbox</h2>
+    <p>Pongsakorn Sinhoyrak</p>
+  </div>
+
+  <ul class="menu-list">
+    <li class="menu-item active" onclick="showPage('inbox')">
+      <span class="icon">✉️</span> Inbox
+    </li>
+    <li class="menu-item" onclick="showPage('outbox')">
+      <span class="icon">📤</span> Outbox
+    </li>
+    <li class="menu-item" onclick="showPage('favorites')">
+      <span class="icon">❤️</span> Favorites
+    </li>
+    <li class="menu-item" onclick="showPage('archived')">
+      <span class="icon">📥</span> Archived
+    </li>
+    <li class="menu-item" onclick="showPage('trash')">
+      <span class="icon">🗑️</span> Trash
+    </li>
+    <li class="menu-item" onclick="showPage('spam')">
+      <span class="icon">⚠️</span> Spam
+    </li>
+    <li class="menu-item" onclick="showPage('test')">
+      <span class="icon">🐱</span> Test Page
+    </li>
+  </ul>
+
+  <div class="divider"></div>
+  <div class="label-header">Labels</div>
+  <ul class="menu-list">
+    <li class="menu-item"><span class="icon">🔖</span> Family</li>
+    <li class="menu-item"><span class="icon">🔖</span> Friends</li>
+    <li class="menu-item"><span class="icon">🔖</span> Notes</li>
+    <li class="menu-item"><span class="icon">🔖</span> Work</li>
+    <li class="menu-item"><span class="icon">🔖</span> Travel</li>
+    <li class="menu-item"><span class="icon">🔖</span> Reminders</li>
+  </ul>
+</div>
+
+<div class="content">
+  <div class="content-header" id="page-title">inbox</div>
+  <div class="content-body" id="page-body">
+    <h3>inbox</h3>
+    <a href="#">Explore UI Components</a>
+    <p>Pongsakorn Sinhoyrak</p>
+  </div>
+</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('page-title').textContent = name;
+
+    if (name === 'test') {
+      document.getElementById('page-body').innerHTML = `
+        <h3>Test Page</h3>
+        <img class="cat-img" src="https://http.cat/images/200.jpg" alt="cat"/>
+        <p>Pongsakorn Sinhoyrak</p>
+      `;
+    } else {
+      document.getElementById('page-body').innerHTML = `
+        <h3>${name}</h3>
+        <a href="#">Explore UI Components</a>
+        <p>Pongsakorn Sinhoyrak</p>
+      `;
+    }
+  }
+</script>
+
+</body>
 </html>
